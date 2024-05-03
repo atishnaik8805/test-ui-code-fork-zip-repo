@@ -19,7 +19,7 @@ jobs:
       - name: Forking the repo
         run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app --fork-name ng-app-fork --clone --remote
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
   build:
 
