@@ -22,7 +22,7 @@ jobs:
           repository: ${{ github.repository }}
           ref: ${{ github.ref }}
       - name: Forking the repo
-        run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app
+        run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app --origin --remote
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
