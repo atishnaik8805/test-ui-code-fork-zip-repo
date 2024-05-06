@@ -21,10 +21,6 @@ jobs:
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.ref }}
-      - name: Print repo name
-        run: echo ${{ github.repository }}
-      - name: Print ref name
-        run: ${{ github.ref }}
       - name: Forking the repo
         run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app
         env:
