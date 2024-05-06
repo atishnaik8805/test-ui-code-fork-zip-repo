@@ -16,11 +16,11 @@ jobs:
   fork-the-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master repo
+      - name: Checkout main repo
         uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
-          ref: ${{ github.ref }}
+          ref: main
       - name: Forking the repo
         run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app origin --remote
         env:
