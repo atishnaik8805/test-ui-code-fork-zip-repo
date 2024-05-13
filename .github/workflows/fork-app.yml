@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Fork code from github branch
 
 on:
@@ -12,6 +9,7 @@ on:
 permissions:
   checks: write
   contents: write
+
 jobs:
   clone-and-submodule:
     runs-on: ubuntu-latest
@@ -22,21 +20,17 @@ jobs:
           repository: atishnaik8805/test-ui-code-fork-zip-repo
           ref: main
           submodules: recursive
-      - name: Adding the submodule
+      - name: Adding a submodule
         run: |
-          git submodule add https://github.com/Umut-Tosun/e-commerce-app
+          git submodule add https://github.com/Umut-Tosun/e-commerce-app e-commerce-app
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [16.x, 18.x, 19.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
       with:
@@ -46,7 +40,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install and build submodule
+    - name: Install, build, and test submodule
       run: |
         cd e-commerce-app
         npm ci
