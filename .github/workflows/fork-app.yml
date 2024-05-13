@@ -25,6 +25,9 @@ jobs:
           git submodule add https://github.com/Umut-Tosun/e-commerce-app e-commerce-app
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Update submodule
+        run: |
+          git submodule update --init --recursive
 
   build:
     runs-on: ubuntu-latest
