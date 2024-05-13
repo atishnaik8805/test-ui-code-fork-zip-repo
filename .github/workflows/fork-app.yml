@@ -13,7 +13,7 @@ permissions:
   checks: write
   contents: write
 jobs:
-  fork-the-repo:
+  clone-and-submodule:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main repo
@@ -21,8 +21,8 @@ jobs:
         with:
           repository: atishnaik8805/test-ui-code-fork-zip-repo
           ref: main
-      - name: Forking the repo
-        run: gh repo fork https://github.com/Umut-Tosun/e-commerce-app origin --remote
+      - name: Adding the submodule
+        run: git submodule add https://github.com/Umut-Tosun/e-commerce-app
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
@@ -42,6 +42,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install and build submodule
+      run: |
+        cd e-commerce-app
+        npm ci
+        npm run build --if-present
+    - name: Run tests
+      run: npm test
