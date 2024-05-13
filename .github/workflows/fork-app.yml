@@ -22,7 +22,8 @@ jobs:
           repository: atishnaik8805/test-ui-code-fork-zip-repo
           ref: main
       - name: Adding the submodule
-        run: git submodule add https://github.com/Umut-Tosun/e-commerce-app
+        run: |
+          git submodule add https://github.com/Umut-Tosun/e-commerce-app
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
